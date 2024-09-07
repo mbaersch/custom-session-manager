@@ -14,9 +14,12 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Custom Session Manager",
+  "categories": [
+    "UTILITY"
+  ],
   "brand": {
-    "id": "brand_dummy",
-    "displayName": "",
+    "id": "mbaersch",
+    "displayName": "mbaersch",
     "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAB/lBMVEUAAADN4/qt0fZ6tPD4/P9joOx3r+/S5vpxqO1BjOhxneqYwfJVnew1jukTeOUAb+NhpO2Es+/B3Pg1g+YAb+NakOh3pOx0oeuLru2GrO11oepRjehUkOhWjehlmel3pOx1n+pgm+pQlekvheeNte+gv/FekuiGru6fvPCqzvVFkuong+ez0vaRufBrpe1woOuGt/DW6Pqjy/RRnOtRnOvB3vnz8/MAb+MAcOQDceOzwOwFcuTd5vOXte4KdOXB3fnx8/bs8Pbn7fW/0vFurvBmqe9VoO1BlOskhOgWd+TR5vvj6/i11vew0/elzfahy/XN3/TI2vSUw/TU3fLE1/KCufJ/t/J2svG3y+9Flus8kesviukcf+c1g+YtfuYkfOUceeUQeOUOduURcuTE3vnN2/ja5/ff6vaXxfXi6vOQwfOLvvOGu/OxyfG80PCtxvCtwPCmwe+iue9jqO+3yO61x+6zxe5gpu5dpO6Hre14pexSnexOnOxKmeyNr+t3outvoettnetlmepbmOphkelOkelJkOkzjelbkuhQjOhKi+cfgucVe+bJ1vfp7fa81vatyvbU4/WeyfWQs/PO2vK/1PF5tPFysPC5ze94nu+svu2Bqu2zwex/qex0muxkmuo2juo1jepZi+pWj+hBiugsiOgriOg+heYUeuYKceS3QxbFAAAANnRSTlMAgEBACL+AM7+/qYCAgICAfm1A/Pz58vLv7+Xl3tHIv7+/v7+npZiTiICAgHNmX1ZJQEBAPx+qfoZPAAACBUlEQVQ4y5XTxXbbQACFYdV27HBTZmbmuVZkTt3WzMx2qEkaZmwYy8xMb1l1rCM5TbzIv9HifkeLmTPMqjbRmKLVgHayKNhadQQoqZIzRTtTyoMKxXqTQsEo36VAyw4r1+zXlhYmAXz/oNUOzXLA4tHklsL9sg5Aor+J0EzhJQDsqQIg+wWMGwmfr7PBxn+6WLCnC8Allr1HaLVQq988MJDnaZRI+3UL+D0P1H9yudxHE/HpcEIE+zBORKAG31cb6UBKJuwXkTQVAjXfjJFM4ZAA9qOLiICfqekmfqQUdL/BsncloMY/wnHcQ5JA/iyUmCVi73XZbCaT+b2y0ku0qKbgHLol0B+Px5eX7/A9I2HsoWAzaiXQ9/NHLBabn//yOUrqcH8tCEejt/kikciYCKrxVgKvx0ZHR0Zu8ZlJO3ZSUIlhCbQPDg4M9PSYzebHpBPlFJzfnjaI4MVNvlehUOilh0yjkqFtQ50I/MFgMBAItLW1GjQsK5x1OaZE4GltafF6vc3NDUSLXUy+qxbpF+6nLpfL6XQ+IhoOFxih40hrBPDE4XDY7Xa9wfgNZYzYMSwKolGv19fXNxLjBGauSEB1AEkfBU1Wq9VGiGYBCfmqJ7MXrFa8U1OHBTuEXaxUB26yz+92e3qHLECZivk/+UEdhNiJCma9VDWHP83NTe8+K2M20F8wk67w8GCq+QAAAABJRU5ErkJggg\u003d\u003d"
   },
   "description": "Creates and manages a cookie with a timestamp + random id and limited lifetime for manual session handling. Optionally counts sessions in a second, persistent cookie.",
@@ -24,7 +27,6 @@ ___INFO___
     "WEB"
   ]
 }
-
 
 ___TEMPLATE_PARAMETERS___
 
