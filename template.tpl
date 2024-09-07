@@ -15,7 +15,7 @@ ___INFO___
   "securityGroups": [],
   "displayName": "Custom Session Manager",
   "categories": [
-    "UTILITY"
+    "ANALYTICS"
   ],
   "brand": {
     "id": "mbaersch",
