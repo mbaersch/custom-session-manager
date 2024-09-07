@@ -1,5 +1,5 @@
 homepage: "https://www.markus-baersch.de"
 documentation: "https://github.com/mbaersch/custom-session-manager#readme"
 versions:
-  - sha: c4f414c6c2845581e85629e4dc6551edea24bbb1
+  - sha: 111bcc83d9ec75ab0239e1e650af3d339ac5e642
     changeNotes: initial release.
