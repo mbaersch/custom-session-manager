@@ -1,0 +1,5 @@
+homepage: "https://www.markus-baersch.de"
+documentation: "https://github.com/mbaersch/custom-session-manager#readme"
+versions:
+  - sha: xxx
+    changeNotes: initial release.
