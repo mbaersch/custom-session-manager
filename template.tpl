@@ -28,6 +28,7 @@ ___INFO___
   ]
 }
 
+
 ___TEMPLATE_PARAMETERS___
 
 [
@@ -57,6 +58,14 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true,
     "defaultValue": true,
     "help": "Activate to create a second cookie that counts sessions for the same browser"
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "followConsentMode",
+    "checkboxText": "Follow Consent Mode",
+    "simpleValueType": true,
+    "defaultValue": false,
+    "help": "Activate to only create cookies if \"analytics_storage\" is set to \"granted\". If there is no consent, the tag will create new session data every time it is executed."
   },
   {
     "type": "CHECKBOX",
@@ -128,6 +137,7 @@ const getCookieValues = require('getCookieValues');
 const setCookie = require('setCookie');
 const makeNumber = require('makeNumber');
 const dataLayerPush = require('createQueue')('dataLayer');
+const hasConsent = require('isConsentGranted')('analytics_storage');
   
 let sNumCookieName = data.sNumCookieName || "_snum",                 
     sessionMarkerCookie = data.sessionMarkerCookie || "_smarker",   
@@ -146,20 +156,22 @@ if (sCookieDomain) cOptions.domain = sCookieDomain;
 let snum = makeNumber(getCookieValues(sNumCookieName)[0])||0;
 
 //new session?
-if (!sessionMarker) {
+if (!hasConsent || !sessionMarker) {
   
   isNewSession = true;
   
   //create new session id 
   timeStamp = makeString(Math.round(getTimestampMillis() / 1000));
-  sessionId = generateRandom(1000000000, 9999999999);
+  sessionId = makeString(generateRandom(1000000000, 9999999999));
   sessionMarker = timeStamp + "." + sessionId;
   
   //read and increment session number, if defined
   if (data.countSessions === true) { 
     snum++;
     cOptions["max-age"] = 60*60*24*365;
-    setCookie(sNumCookieName, makeString(snum), cOptions);
+    if (hasConsent) {
+      setCookie(sNumCookieName, makeString(snum), cOptions);
+    }
   }
 } else {
   let sessionInfo = sessionMarker.split("."); 
@@ -169,17 +181,20 @@ if (!sessionMarker) {
 
 //create or update session marker cookie with existing or new marker
 //expires after x minutes
-cOptions["max-age"] = 60 * sessionMinutes;
-setCookie(sessionMarkerCookie, sessionMarker, cOptions);
+if (hasConsent) {
+  cOptions["max-age"] = 60 * sessionMinutes;
+  setCookie(sessionMarkerCookie, sessionMarker, cOptions);
+}
 
 //send dataLayer push
 if (data.pushEvent || data.eventName)
   dataLayerPush({
     event: data.eventName||"sessionReady",
     sessionInfo: {sessionStarted: timeStamp, 
+                  hasCookie: hasConsent,
                   sessionHash: sessionId,
                   sessionNumber: snum,
-                  sessionCookieValue: timeStamp+"."+sessionId,
+                  sessionCookieValue: hasConsent ? timeStamp+"."+sessionId : "",
                   isNewSession: isNewSession
                  }
   });
@@ -320,6 +335,59 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 8,
                     "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_consent",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "consentTypes",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "analytics_storage"
                   },
                   {
                     "type": 8,
