@@ -4,7 +4,7 @@
 
 Create and manage a session using cookies with custom cookie name, session length, and cookie domain.  
 
-![Template Status](https://img.shields.io/badge/Community%20Template%20Gallery%20Status-submitted-orange) ![Repo Size](https://img.shields.io/github/repo-size/mbaersch/custom-session-manager) ![License](https://img.shields.io/github/license/mbaersch/custom-session-manager)
+[![Template Status](https://img.shields.io/badge/Community%20Template%20Gallery%20Status-published-green)](https://tagmanager.google.com/gallery/#/owners/mbaersch/templates/custom-session-manager) ![Repo Size](https://img.shields.io/github/repo-size/mbaersch/custom-session-manager) ![License](https://img.shelds.io/github/license/mbaersch/custom-session-manager)
 
 This template can be used to handle a custom session. The tag creates and manages a session with a timestamp, random hash / id and limited lifetime. Optionally counts sessions in a second, persistent cookie. The hash can be used as a limited user id.
 
